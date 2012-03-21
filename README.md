@@ -4,7 +4,7 @@ This is the Newsman App PHP API client for API version 1.2.
 
 ## Newsman - Smart Email Service Provider
 
-[Newsman](http://www.newsmanapp.com title="Smart Email Service Provider") is a Smart Email Service Provider. 
+[Newsman](http://www.newsmanapp.com "Smart Email Service Provider") is a Smart Email Service Provider. 
 We send newsletters on behalf of our customers.
 
 ## About Newsman API - version 1.2
@@ -43,4 +43,4 @@ Please make sure all strings are UTF-8 encoded.
 
 # Example 
 
-A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example.php title="Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example.php).
+A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example.php "Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example.php).
