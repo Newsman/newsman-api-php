@@ -5,7 +5,6 @@
  */
 
 require_once("Newsman/Client.php");
-require_once("Newsman/Client/Exception.php");
 
 /**
  * Newsman User Id
