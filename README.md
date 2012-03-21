@@ -40,3 +40,7 @@ The REST *call type* is done over HTTP POST and requires one of the following ht
 # String Encoding
 
 Please make sure all strings are UTF-8 encoded.
+
+# Example 
+
+A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example.php title="Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example.php).
