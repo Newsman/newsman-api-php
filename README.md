@@ -4,10 +4,10 @@ This is the Newsman App PHP API client for API version 1.2.
 
 ## Newsman - Smart Email Service Provider
 
-[Newsman](http://www.newsmanapp.com) is a Smart Email Service Provider. 
+[Newsman](http://www.newsmanapp.com title="Smart Email Service Provider") is a Smart Email Service Provider. 
 We send newsletters on behalf of our customers.
 
-## API - v1.2
+## About Newsman API - version 1.2
 
 Our current API version is 1.2. API documentation can be found here:
 
@@ -18,17 +18,25 @@ Our current API version is 1.2. API documentation can be found here:
 Our API requires an API KEY which you can generate in your Account.
 The API exposes XML RPC and REST interfaces.
 
-## Newsman PHP API Client
+This Client offers both options: XML RPC and REST in one single client library. 
+Call type can be set to *rpc* or *rest*. Default type is *rpc*.
 
-The current Newsman PHP API Client is a nice wrapper for the API 
-allowing you to use either: REST or XML RPC.
+### XML RPC
 
-For XML RPC API we support:
+The XML RPC *call type* requires one of the following XML RPC clients installed:
 
 * Zend XML RPC - http://framework.zend.com/manual/en/zend.xmlrpc.html 
 * xmlrpc PHP module - http://www.php.net/manual/en/ref.xmlrpc.php
 
-For REST API POST calls we support:
+XML RPC *call type* is recommended. 
+
+### REST
+
+The REST *call type* is done over HTTP POST and requires one of the following http clients installed:
 
 * curl - http://php.net/manual/en/book.curl.php
 * Zend Http Client - http://framework.zend.com/manual/en/zend.http.client.html
+
+# String Encoding
+
+Please make sure all strings are UTF-8 encoded.
