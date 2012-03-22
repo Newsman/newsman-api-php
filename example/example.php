@@ -1,7 +1,8 @@
 <?
 /**
- * Newsman Api Example
- * Please refer to the documentation for details on each namespace and method
+ * Newsman Api Example - Howto connect / instantiate the client library
+ * Please refer to the documentation for details on each namespace and method and see the detailed 
+ * examples for more details.
  */
 
 require_once("Newsman/Client.php");
@@ -39,19 +40,4 @@ $client = new Newsman_Client($newsman_user_id, $api_key);
  * Autodetected by default, uncomment for specific value
  */
 //$client->setTransport("zend_xmlrpc_client");
-
-/**
- * Example call for adding a email template (subscribe or unsubscribe)
- */
-$ret = $client->template->mailTemplateAdd($list_id, "subscribe_confirm", "[Enter subject here]", "[Enter plaintext here]", "[Enter html here]");
-
-/**
- * Example call for updating a subscriber's properties
- */
-$ret = $client->subscriber->updateProps($subscriber_id, array("key_1" => "value_1", "key_2" => "value_2", "key_n" => "value_n"));
-
-/**
- * Example call for creating a newsletter
- */
-$ret = $client->newsletter->create($list_id, "[Enter HTML content here]", "[Enter plaintext content here]", array("subject" => "[Enter subject here]", "encoding" => "utf-8"));
 ?>

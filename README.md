@@ -15,7 +15,7 @@ Our current API version is 1.2. API documentation can be found here:
 * EN: http://kb.newsmanapp.com/api/
 * FR: http://kb.newsman.fr/api/
  
-Our API requires an API KEY which you can generate in your Account.
+Our API requires an API KEY which you can generate in your Account and your Newsman user id.
 The API exposes XML RPC and REST interfaces.
 
 This Client offers both options: XML RPC and REST in one single client library. 
