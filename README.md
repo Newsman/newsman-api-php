@@ -61,4 +61,4 @@ Please make sure all strings are UTF-8 encoded.
 
 # Example 
 
-A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example/example.php "Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example/example.php).
+More detailed [examples](https://github.com/Newsman/newsman-api-php/tree/master/example "Newsman PHP API Client examples") can be found [here](https://github.com/Newsman/newsman-api-php/tree/master/example).
