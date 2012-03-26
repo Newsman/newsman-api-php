@@ -33,8 +33,10 @@ XML RPC *call type* is recommended.
 Example code:
 
 ```php
+<?php
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $client->setCallType("rpc"); // rpc transport will be detected: zend_http_client or xmlrpc_encode
+?>
 ```
 
 ### REST
@@ -47,8 +49,10 @@ The REST *call type* is done over HTTP POST and requires one of the following ht
 Example code:
 
 ```php
+<?php
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $client->setCallType("rest"); // http transport will be detected: zend_http_client or curl
+?>
 ```
 
 # String Encoding
