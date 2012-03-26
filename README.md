@@ -30,6 +30,12 @@ The XML RPC *call type* requires one of the following XML RPC clients installed:
 
 XML RPC *call type* is recommended. 
 
+Example code:
+```php
+$client = new Newsman_Client($newsman_user_id, $api_key);
+$client->setCallType("rpc"); // rpc transport will be detected: zend_http_client or xmlrpc_encode
+```
+
 ### REST
 
 The REST *call type* is done over HTTP POST and requires one of the following http clients installed:
@@ -37,10 +43,16 @@ The REST *call type* is done over HTTP POST and requires one of the following ht
 * curl - http://php.net/manual/en/book.curl.php
 * Zend Http Client - http://framework.zend.com/manual/en/zend.http.client.html
 
+Example code:
+```php
+$client = new Newsman_Client($newsman_user_id, $api_key);
+$client->setCallType("rest"); // http transport will be detected: zend_http_client or curl
+```
+
 # String Encoding
 
 Please make sure all strings are UTF-8 encoded.
 
 # Example 
 
-A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example.php "Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example.php).
+A more detailed [example](https://github.com/Newsman/newsman-api-php/blob/master/example/example.php "Newsman PHP API Client example") can be found [here](https://github.com/Newsman/newsman-api-php/blob/master/example/example.php).
