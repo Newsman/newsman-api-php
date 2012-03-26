@@ -57,7 +57,7 @@ $client->setCallType("rest"); // http transport will be detected: zend_http_clie
 
 # String Encoding
 
-Please make sure all strings are UTF-8 encoded.
+Please make sure all strings are `UTF-8` encoded.
 
 # Example 
 
