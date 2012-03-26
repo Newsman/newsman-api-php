@@ -31,6 +31,7 @@ The XML RPC *call type* requires one of the following XML RPC clients installed:
 XML RPC *call type* is recommended. 
 
 Example code:
+
 ```php
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $client->setCallType("rpc"); // rpc transport will be detected: zend_http_client or xmlrpc_encode
@@ -44,6 +45,7 @@ The REST *call type* is done over HTTP POST and requires one of the following ht
 * Zend Http Client - http://framework.zend.com/manual/en/zend.http.client.html
 
 Example code:
+
 ```php
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $client->setCallType("rest"); // http transport will be detected: zend_http_client or curl
