@@ -225,14 +225,14 @@ class Newsman_Client
 	
 	public function sendRequestRpc($api_method, $api_params)
 	{
-		$api_method_url = sprintf("%s/%s/xmlrpc/%s/%s", $this->api_url, $this->api_version, $this->user_id, $this->api_key);
+		$api_url = sprintf("%s/%s/xmlrpc/%s/%s", $this->api_url, $this->api_version, $this->user_id, $this->api_key);
 		
 		if ($this->transport == "zend_xmlrpc_client")
 		{
-			$ret = $this->_rpc_Zend($api_method_url, $api_params);
+			$ret = $this->_rpc_Zend($api_url, $api_params);
 		} elseif ($this->transport == "xmlrpc_encode")
 		{
-			$ret = $this->_rpc_xmlrpc($api_method_url, $api_params);
+			$ret = $this->_rpc_xmlrpc($api_url, $api_params);
 		} else
 		{
 			// should never reach this unless setTransport is called with weird transport name
