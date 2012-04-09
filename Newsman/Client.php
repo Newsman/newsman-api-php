@@ -75,7 +75,7 @@ class Newsman_Client
 	{
 		$this->user_id = $user_id;
 		$this->api_key = $api_key;
-		if ($this->use_ssl != true)
+		if ($this->use_ssl !== true)
 		{
 			$this->api_url = $this->nossl_api_url;
 		}
@@ -401,7 +401,10 @@ class Newsman_Client
 		$http_status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
 		if ($http_status != 200)
 		{
-			throw new Newsman_Client_Exception("Error calling method. Got HTTP error code: $http_status", $http_status);
+			throw new Newsman_Client_Exception(
+				sprintf("Error calling method. Got HTTP error code: %s and error message: %s", (string) $http_status, (string) curl_error($cu)),
+				$http_status
+			);
 		}
 		
 		return $ret;
