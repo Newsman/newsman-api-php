@@ -55,7 +55,7 @@ class Newsman_Client
 	 * Call type: rpc or rest (default rpc)
 	 * @var string
 	 */
-	protected $call_type = "rpc";
+	protected $call_type = null;
 		
 	/**
 	 * Transport (http post client)
@@ -88,32 +88,69 @@ class Newsman_Client
 	 */
 	protected function _detectTransport()
 	{
-		@require_once("Zend/XmlRpc/Client.php");
-		@require_once("Zend/Http/Client.php");
+		@include("Zend/XmlRpc/Client.php");
+		@include("Zend/Http/Client.php");
 
-		if (@class_exists("Zend_XmlRpc_Client"))
+		if (is_null($this->call_type))
 		{
-			$this->call_type = "rpc";
-			$this->transport = "zend_xmlrpc_client";
+			if (@class_exists("Zend_XmlRpc_Client"))
+			{
+				$this->call_type = "rpc";
+				$this->transport = "zend_xmlrpc_client";
+			}
+			elseif (function_exists("xmlrpc_encode"))
+			{
+				$this->call_type = "rpc";
+				$this->transport = "xmlrpc_encode";
+			}
+			elseif (@class_exists("Zend_Http_Client"))
+			{
+				$this->call_type = "rest";
+				$this->transport = "zend_http_client";
+			}
+			elseif (function_exists("curl_init") && function_exists("curl_exec"))
+			{
+				$this->call_type = "rest";
+				$this->transport = "curl";
+			}
+			else
+			{
+				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires either Zend_XmlRpc_Client or xmlrpc_encode extension for RPC calls or Zend_Http_Client or CURL extension for REST calls.");
+			}
 		}
-		elseif (function_exists("xmlrpc_encode"))
+		elseif ($this->call_type == "rest")
 		{
-			$this->call_type = "rpc";
-			$this->transport = "xmlrpc_encode";
+			if (@class_exists("Zend_Http_Client"))
+			{
+				$this->call_type = "rest";
+				$this->transport = "zend_http_client";
+			}
+			elseif (function_exists("curl_init") && function_exists("curl_exec"))
+			{
+				$this->call_type = "rest";
+				$this->transport = "curl";
+			}
+			else
+			{
+				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires either Zend_XmlRpc_Client or xmlrpc_encode extension for RPC calls or Zend_Http_Client or CURL extension for REST calls.");
+			}
 		}
-		elseif (@class_exists("Zend_Http_Client"))
+		elseif ($this->call_type == "rpc")
 		{
-			$this->call_type = "rest";
-			$this->transport = "zend_http_client";
-		}
-		elseif (function_exists("curl_init") && function_exists("curl_exec"))
-		{
-			$this->call_type = "rest";
-			$this->transport = "curl";
-		}
-		else
-		{
-			throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires either Zend_XmlRpc_Client or xmlrpc_encode extension for RPC calls or Zend_Http_Client or CURL extension for REST calls.");
+			if (@class_exists("Zend_XmlRpc_Client"))
+			{
+				$this->call_type = "rpc";
+				$this->transport = "zend_xmlrpc_client";
+			}
+			elseif (function_exists("xmlrpc_encode"))
+			{
+				$this->call_type = "rpc";
+				$this->transport = "xmlrpc_encode";
+			}
+			else
+			{
+				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires either Zend_XmlRpc_Client or xmlrpc_encode extension for RPC calls or Zend_Http_Client or CURL extension for REST calls.");
+			}
 		}
 	}
 	
@@ -286,7 +323,7 @@ class Newsman_Client
 	
 	protected function _rpc_Zend($url, $params)
 	{
-		require_once("Zend/XmlRpc/Client.php");
+		@include("Zend/XmlRpc/Client.php");
 		$client = new Zend_XmlRpc_Client($url);
 		try
 		{
@@ -331,7 +368,7 @@ class Newsman_Client
 	
 	protected function _post_Zend($url, $params)
 	{
-		require_once("Zend/Http/Client.php");
+		@include("Zend/Http/Client.php");
 		$client = new Zend_Http_Client($url,
 							array(
 								"maxredirects" => 0,
