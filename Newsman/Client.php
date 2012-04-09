@@ -396,6 +396,7 @@ class Newsman_Client
 		
 		curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($cu, CURLOPT_SSL_VERIFYPEER, false);
 		
 		$ret = curl_exec($cu);
 		$http_status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
