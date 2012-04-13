@@ -312,7 +312,7 @@ class Newsman_Client
 		// check for errors
 		if (is_array($ret))
 		{
-			if ($ret["err"] === "true")
+			if ($ret["err"] === "true" || $ret["err"] === true)
 			{
 				throw new Newsman_Client_Exception($ret["message"], $ret["code"]);
 			}
@@ -394,7 +394,10 @@ class Newsman_Client
 		$cu = curl_init();
 		curl_setopt($cu, CURLOPT_URL, $url);
 		curl_setopt($cu, CURLOPT_POST, true); 
-		if (preg_match("/^https/is", $url)) curl_setopt($cu, CURLOPT_PORT, 443);
+		if (preg_match("/^https/is", $url)) 
+		{
+			curl_setopt($cu, CURLOPT_PORT, 443);
+		}
 		
 		curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
