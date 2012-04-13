@@ -88,8 +88,8 @@ class Newsman_Client
 	 */
 	protected function _detectTransport()
 	{
-		@include("Zend/XmlRpc/Client.php");
-		@include("Zend/Http/Client.php");
+		@include_once("Zend/XmlRpc/Client.php");
+		@include_once("Zend/Http/Client.php");
 
 		if (is_null($this->call_type))
 		{
@@ -323,7 +323,8 @@ class Newsman_Client
 	
 	protected function _rpc_Zend($url, $params)
 	{
-		@include("Zend/XmlRpc/Client.php");
+		@include_once("Zend/XmlRpc/Client.php");
+		
 		$client = new Zend_XmlRpc_Client($url);
 		try
 		{
@@ -368,7 +369,8 @@ class Newsman_Client
 	
 	protected function _post_Zend($url, $params)
 	{
-		@include("Zend/Http/Client.php");
+		@include_once("Zend/Http/Client.php");
+		
 		$client = new Zend_Http_Client($url,
 							array(
 								"maxredirects" => 0,
