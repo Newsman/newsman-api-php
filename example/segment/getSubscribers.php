@@ -6,8 +6,8 @@ require_once("Newsman/Client.php");
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->segment->getSubscribers(
 	$segment_id,
-	$start, /* Optional for large lists. The page number to start. Defaults to first page (page = 0). */
-	$limit /* Optional for large lists. The number of results to return per page. Defaults to 100. Upper limit is 1000. */
+	$start, /* Optional for large lists. The page number to start. Defaults to first page (page = 0). */ 
+	$limit /* Optional for large lists. The number of results to return per page. Defaults to 100. Upper limit is 1000. */ 
 );
 
 if (!is_array($ret))

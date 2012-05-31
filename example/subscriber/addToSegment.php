@@ -5,8 +5,8 @@ require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->subscriber->addToSegment(
-	$subscriber_id, /* The subscriber id */
-	$segment_id /* The segment id */
+	$subscriber_id, /* The subscriber id */ 
+	$segment_id /* The segment id */ 
 );
 
 if ($ret !== true)

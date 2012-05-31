@@ -5,12 +5,12 @@ require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->subscriber->saveSubscribe(
-	$list_id, /* The list id */
-	$email, /* Email address of subscriber */
-	$firstname, /* Firstname of subscriber, can be null. */
-	$lastname, /* Lastname of subscriber, can be null. */
-	$ip, /* IP address of subscriber */
-	$props /* Hash array with props (can be later used to build segment criteria) */
+	$list_id, /* The list id */ 
+	$email, /* Email address of subscriber */ 
+	$firstname, /* Firstname of subscriber, can be null. */ 
+	$lastname, /* Lastname of subscriber, can be null. */ 
+	$ip, /* IP address of subscriber */ 
+	$props /* Hash array with props (can be later used to build segment criteria) */ 
 );
 
 if ($ret == "")

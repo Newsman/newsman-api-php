@@ -5,9 +5,9 @@ require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->subscriber->saveUnsubscribe(
-	$list_id, /* The list id */
-	$email, /* Email address to be unsubscribed */
-	$ip /* IP address of user unsubscribing */
+	$list_id, /* The list id */ 
+	$email, /* Email address to be unsubscribed */ 
+	$ip /* IP address of user unsubscribing */ 
 );
 
 if ($ret == "")

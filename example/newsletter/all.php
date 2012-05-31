@@ -8,14 +8,7 @@ $ret = $client->newsletter->all(
 	$list_id,
 	$start_date,
 	$stop_date,
-	$status /* Status of newsletter can be:
-  0 - unconfirmed (new)
-  1 - confirmed
-  2 - sending
-  3 - paused
-  4 - resumed sending
-  5 - sent (finished)
-  If status is false all newsletters are returned */
+	$status /* Status of newsletter can be: 0 - unconfirmed (new) 1 - confirmed 2 - sending 3 - paused 4 - resumed sending 5 - sent (finished) If status is false all newsletters are returned */ 
 );
 
 if (!is_array($ret))

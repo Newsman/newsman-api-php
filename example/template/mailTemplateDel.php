@@ -5,7 +5,7 @@ require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->template->mailTemplateDel(
-	$template_id /* - The template ID to be removed */
+	$template_id /* - The template ID to be removed */ 
 );
 
 if ($ret !== true)

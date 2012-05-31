@@ -6,7 +6,7 @@ require_once("Newsman/Client.php");
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->list->setModerators(
 	$list_id,
-	$moderators /* Array with one email per array item */
+	$moderators /* Array with one email per array item */ 
 );
 
 if ($ret !== true)

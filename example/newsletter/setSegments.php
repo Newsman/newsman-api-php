@@ -6,7 +6,7 @@ require_once("Newsman/Client.php");
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->newsletter->setSegments(
 	$newsletter_id,
-	$segment_ids /* Array of segments (one int per array item) */
+	$segment_ids /* Array of segments (one int per array item) */ 
 );
 
 if ($ret !== true)

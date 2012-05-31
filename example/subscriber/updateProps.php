@@ -5,8 +5,8 @@ require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->subscriber->updateProps(
-	$subscriber_id, /* The subscriber id */
-	$props /* Hash array with props (k = v) */
+	$subscriber_id, /* The subscriber id */ 
+	$props /* Hash array with props (k = v) */ 
 );
 
 if ($ret !== true)

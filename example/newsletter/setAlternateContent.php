@@ -6,8 +6,8 @@ require_once("Newsman/Client.php");
 $client = new Newsman_Client($newsman_user_id, $api_key);
 $ret = $client->newsletter->setAlternateContent(
 	$newsletter_id,
-	$akey, /* The alternate key */
-	$content /* The html content */
+	$akey, /* The alternate key */ 
+	$content /* The html content */ 
 );
 
 if ($ret !== true)
