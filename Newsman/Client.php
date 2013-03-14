@@ -10,12 +10,6 @@ class Newsman_Client
 	protected $api_url = "https://ssl.newsman.ro/api";
 	
 	/**
-	 * The no SSL API URL
-	 * @var string
-	 */
-	protected $nossl_api_url = "http://api.newsman.ro/api";
-	
-	/**
 	 * The user ID	
 	 * @var string
 	 */
@@ -69,16 +63,11 @@ class Newsman_Client
 	 * Newsman V2 REST API - Client 
 	 * @param $user_id string
 	 * @param $api_key string
-	 * @param $use_ssl boolean flag for enabling ssl or not. default is true
 	 */
-	public function __construct($user_id, $api_key, $use_ssl = true)
+	public function __construct($user_id, $api_key)
 	{
 		$this->user_id = $user_id;
 		$this->api_key = $api_key;
-		if ($this->use_ssl !== true)
-		{
-			$this->api_url = $this->nossl_api_url;
-		}
 		
 		$this->_detectTransport();
 	}
