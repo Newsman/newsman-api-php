@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Newsman Api Example - Howto connect / instantiate the client library
  * Please refer to the documentation for details on each namespace and method and see the detailed 
