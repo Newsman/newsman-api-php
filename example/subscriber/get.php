@@ -1,10 +1,12 @@
 <?php
-// @see: http://kb.newsman.ro/api/1.2/subscriber.get
+// @see: http://kb.newsman.ro/api/1.2/subscriber.get 
 // you can get your API KEY and your newsman_user_id from My account -> API
 require_once("Newsman/Client.php");
 
 $client = new Newsman_Client($newsman_user_id, $api_key);
-$ret = $client->subscriber->get($subscriber_id);
+$ret = $client->subscriber->get(
+	$subscriber_id
+);
 
 if (!is_array($ret))
 {
