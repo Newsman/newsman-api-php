@@ -301,7 +301,7 @@ class Newsman_Client
 		// check for errors
 		if (is_array($ret))
 		{
-			if ($ret["err"] === "true" || $ret["err"] === true)
+			if (isset($ret["err"]) && ($ret["err"] === "true" || $ret["err"] === true))
 			{
 				throw new Newsman_Client_Exception($ret["message"], $ret["code"]);
 			}
