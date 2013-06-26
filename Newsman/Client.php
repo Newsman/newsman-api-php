@@ -243,6 +243,10 @@ class Newsman_Client
 		{
 			$k = $k.""; // make it string
 			if (is_numeric($v) || is_string($v)) $ret[$k] = $v.""; // always string
+			elseif ($v instanceof DateTime)
+			{
+				$v = $v->format(DateTime::ISO8601);
+			}
 			else $ret[$k] = json_encode($v);
 		}
 		
