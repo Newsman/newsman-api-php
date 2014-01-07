@@ -352,7 +352,7 @@ class Newsman_Client
 			throw new Newsman_Client_Exception("Could not make the RPC call");
 		}
 
-		if (xmlrpc_is_fault($response))
+		if (is_array($response) && xmlrpc_is_fault($response))
 		{
 			throw new Newsman_Client_Exception("Error on the RPC call: " . $response["faultString"]);
 		}
