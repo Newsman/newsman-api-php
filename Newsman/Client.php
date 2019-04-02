@@ -1,5 +1,4 @@
 <?php
-require_once(dirname(__FILE__) . "/Client/Exception.php");
 
 class Newsman_Client
 {
@@ -28,7 +27,7 @@ class Newsman_Client
 	protected $api_version = "1.2";
 
 	/**
-	 * Output format: json or ser (php serialize), required for rest calls only, ignored for rpc
+	 * Output format: json or ser (php serialize)
 	 * @var string
 	 */
 	protected $output_format = "json";
@@ -46,18 +45,10 @@ class Newsman_Client
 	protected $method_name = null;
 
 	/**
-	 * OBSOLETE - Call type: rpc or rest (default rpc)
+	 *  Call type: rest
 	 * @var string
 	 */
-	protected $call_type = null;
-
-	/**
-	 * Transport (http post client)
-	 * Supported values for rpc: Zend_XmlRpc_Client or xmlrpc_encode
-	 * Supported values for rest: Zend_Http_Client and curl
-	 * @var string
-	 */
-	protected $transport = "curl";
+	protected $call_type = "rest";
 
 	/**
 	 * Newsman V2 REST API - Client
@@ -69,20 +60,19 @@ class Newsman_Client
 		$this->user_id = $user_id;
 		$this->api_key = $api_key;
 
-		$this->_detectTransport();
+		$this->_initCurl();
 	}
 
 	/**
-	 * Detect the transport (set curl)
+	 * Initialize curl
 	 */
-	protected function _detectTransport()
+	protected function _initCurl()
 	{
 		if (is_null($this->call_type))
 		{
 			if (function_exists("curl_init") && function_exists("curl_exec"))
 			{
 				$this->call_type = "rest";
-				$this->transport = "curl";
 			} else
 			{
 				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires CURL extension for REST calls.");
@@ -92,7 +82,6 @@ class Newsman_Client
 			if (function_exists("curl_init") && function_exists("curl_exec"))
 			{
 				$this->call_type = "rest";
-				$this->transport = "curl";
 			} else
 			{
 				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires CURL extension for REST calls.");
@@ -101,23 +90,21 @@ class Newsman_Client
 	}
 
 	/**
-	 * Sets the transport
+	 * Deprecated
 	 * @param string $transport
 	 */
 	public function setTransport($transport)
 	{
-		$this->transport = $transport;
+
 	}
 
 	/**
-	 * OBSOLETE, rest by default
+	 * Deprecated
 	 * @param string $call_type
 	 */
 	public function setCallType($call_type)
 	{
-		//$this->call_type = $call_type;
-		$this->call_type = "rest";
-		$this->_detectTransport();
+
 	}
 
 	/**
@@ -126,6 +113,13 @@ class Newsman_Client
 	 */
 	public function setApiUrl($api_url)
 	{
+		$url = parse_url($api_url);
+
+		if ($url['scheme'] != 'https')
+		{
+			throw new Newsman_Client_Exception("Protocol must be https");
+		}
+
 		$this->api_url = $api_url;
 	}
 
@@ -220,14 +214,7 @@ class Newsman_Client
 
 		$api_params = $this->encodeParams($params);
 
-		if ($this->transport == "curl")
-		{
-			$ret = $this->_post_curl($api_method_url, $api_params);
-		} else
-		{
-			// should never reach this unless setTransport is called with weird transport name
-			throw new Newsman_Client_Exception("curl extension is required to make the POST REST call.");
-		}
+		$ret = $this->_post_curl($api_method_url, $api_params);
 
 		if ($this->output_format == "json")
 		{
@@ -281,6 +268,11 @@ class Newsman_Client
 
 		return $ret;
 	}
+}
+
+class Newsman_Client_Exception extends Exception
+{
+
 }
 
 ?>
