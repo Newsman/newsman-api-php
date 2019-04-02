@@ -247,10 +247,7 @@ class Newsman_Client
 		$cu = curl_init();
 		curl_setopt($cu, CURLOPT_URL, $url);
 		curl_setopt($cu, CURLOPT_POST, true);
-		if (preg_match("/^https/is", $url))
-		{
-			curl_setopt($cu, CURLOPT_PORT, 443);
-		}
+		curl_setopt($cu, CURLOPT_PORT, 443);
 
 		curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
