@@ -15,23 +15,20 @@ Our current API version is 1.2. API documentation can be found here:
 * EN: https://kb.newsmanapp.com/api/
 * FR: https://kb.newsman.fr/api/
  
-Our API requires an API KEY which you can generate in your Account and your Newsman user id.
-The API exposes XML RPC and REST interfaces.
+Our API requires an API KEY which you can generate in your Account and your Newsman User id.
 
-This Client offers REST in this client library.
+### Requirements
 
-### REST
-
-The REST *call type* is done over HTTP POST and requires one of the following http clients installed:
+Newsman PHP API requires `curl` installed:
 
 * curl - https://www.php.net/manual/en/book.curl.php
 
-Example code:
+## Example
 
 ```php
 <?php
 $client = new Newsman_Client($newsman_user_id, $api_key);
-$client->setCallType("rest"); // http transport will be detected: curl
+$ret = $client->list->all();
 ?>
 ```
 
