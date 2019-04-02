@@ -1,16 +1,17 @@
 <?php
-// @see: http://kb.newsman.ro/api/1.2/download.bounced 
+// @see: https://kb.newsman.ro/api/1.2/download.bounced
 // you can get your API KEY and your newsman_user_id from My account -> API
 require_once("Newsman/Client.php");
 
-$client = new Newsman_Client($newsman_user_id, $api_key);
-$ret = $client->download->bounced(
-	$list_id
-);
-
-if ($ret == "")
+try
 {
-	// handle error here
-	die("Error on method download.bounced");
+	$client = new Newsman_Client($newsman_user_id, $api_key);
+	$ret = $client->download->bounced(
+		$list_id
+	);
+} catch (Exception $e)
+{
+	//handle exception here
 }
+
 ?>

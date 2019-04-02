@@ -1,16 +1,16 @@
 <?php
-// @see: http://kb.newsman.ro/api/1.2/newsletter.pause 
+// @see: https://kb.newsman.ro/api/1.2/newsletter.pause
 // you can get your API KEY and your newsman_user_id from My account -> API
 require_once("Newsman/Client.php");
 
-$client = new Newsman_Client($newsman_user_id, $api_key);
-$ret = $client->newsletter->pause(
-	$newsletter_id
-);
-
-if ($ret !== true)
+try
 {
-	// handle error here
-	die("Error on method newsletter.pause");
+	$client = new Newsman_Client($newsman_user_id, $api_key);
+	$ret = $client->newsletter->pause(
+		$newsletter_id
+	);
+} catch (Exception $e)
+{
+	//handle exception here
 }
 ?>
