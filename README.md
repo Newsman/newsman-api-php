@@ -4,7 +4,7 @@ This is the Newsman App PHP API client for API version 1.2.
 
 ## Newsman - Smart Email Service Provider
 
-[Newsman](http://www.newsmanapp.com "Smart Email Service Provider") is a Smart Email Service Provider. 
+[Newsman](https://www.newsman.app "Smart Email Service Provider") is a Smart Email Service Provider. 
 We send newsletters on behalf of our customers.
 
 ## About Newsman API - version 1.2
@@ -12,7 +12,7 @@ We send newsletters on behalf of our customers.
 Our current API version is 1.2. API documentation can be found here:
 
 * RO: https://kb.newsman.ro/api/
-* EN: https://kb.newsmanapp.com/api/
+* EN: https://kb.newsman.app/api/
 * FR: https://kb.newsman.fr/api/
  
 Our API requires an API KEY which you can generate in your Account and your Newsman User id.
