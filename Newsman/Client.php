@@ -45,12 +45,6 @@ class Newsman_Client
 	protected $method_name = null;
 
 	/**
-	 *  Call type: rest
-	 * @var string
-	 */
-	protected $call_type = "rest";
-
-	/**
 	 * Newsman V2 REST API - Client
 	 * @param $user_id string
 	 * @param $api_key string
@@ -68,24 +62,11 @@ class Newsman_Client
 	 */
 	protected function _initCurl()
 	{
-		if (is_null($this->call_type))
+		if (function_exists("curl_init") && function_exists("curl_exec"))
 		{
-			if (function_exists("curl_init") && function_exists("curl_exec"))
-			{
-				$this->call_type = "rest";
-			} else
-			{
-				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires CURL extension for REST calls.");
-			}
-		} elseif ($this->call_type == "rest")
+		} else
 		{
-			if (function_exists("curl_init") && function_exists("curl_exec"))
-			{
-				$this->call_type = "rest";
-			} else
-			{
-				throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires CURL extension for REST calls.");
-			}
+			throw new Newsman_Client_Exception("No extensions found for the Newsman Api Client. Requires CURL extension for REST calls.");
 		}
 	}
 
@@ -132,13 +113,13 @@ class Newsman_Client
 		$this->api_version = $api_version;
 	}
 
-	/**
+	/**Deprecated
 	 * Set the output format: json and ser (php serialize) accepted
 	 * @param string $output_format
 	 */
 	public function setOutputFormat($output_format)
 	{
-		$this->output_format = $output_format;
+
 	}
 
 	public function __get($name)
@@ -172,13 +153,7 @@ class Newsman_Client
 			$v_params[$k] = $params[$i];
 		}
 
-		if ($this->call_type == "rest")
-		{
-			$ret = $this->sendRequestRest($this->method_namespace . "." . $name, $v_params);
-		} else
-		{
-			throw new Newsman_Client_Exception("Unknown call type: $this->call_type");
-		}
+		$ret = $this->sendRequestRest($this->method_namespace . "." . $name, $v_params);
 
 		// reset
 		$this->method_namespace = null;
@@ -216,28 +191,7 @@ class Newsman_Client
 
 		$ret = $this->_post_curl($api_method_url, $api_params);
 
-		if ($this->output_format == "json")
-		{
-			$ret = json_decode($ret, true);
-		} else
-		{
-			if ($this->output_format == "ser")
-			{
-				$ret = unserialize($ret);
-			} else
-			{
-				throw new Newsman_Client_Exception("Unknown serialization format: $this->output_format");
-			}
-		}
-
-		// check for errors
-		if (is_array($ret))
-		{
-			if (isset($ret["err"]) && ($ret["err"] === "true" || $ret["err"] === true))
-			{
-				throw new Newsman_Client_Exception($ret["message"], $ret["code"]);
-			}
-		}
+		$ret = json_decode($ret, true);
 
 		return $ret;
 	}
@@ -251,16 +205,23 @@ class Newsman_Client
 
 		curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
 		curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($cu, CURLOPT_SSL_VERIFYPEER, false);
 
 		$ret = curl_exec($cu);
 		$http_status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
 		if ($http_status != 200)
 		{
-			throw new Newsman_Client_Exception(
-				sprintf("Error calling method. Got HTTP error code: %s and error message: %s", (string)$http_status, (string)$ret),
-				$http_status
-			);
+			$_error = @json_decode($ret, true);
+
+			if (is_array($_error) && array_key_exists("err", $_error) && array_key_exists("message", $_error) && array_key_exists("code", $_error))
+			{
+				throw new Newsman_Client_Exception($_error["message"], $_error["code"]);
+			} else
+			{
+				throw new Newsman_Client_Exception(
+					sprintf((string)curl_error($cu), (string)$http_status),
+					$http_status
+				);
+			}
 		}
 
 		return $ret;
@@ -269,7 +230,10 @@ class Newsman_Client
 
 class Newsman_Client_Exception extends Exception
 {
-
+	public function __construct($message, $code)
+	{
+		parent::__construct($message, $code);
+	}
 }
 
 ?>
