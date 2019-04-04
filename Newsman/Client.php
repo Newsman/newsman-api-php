@@ -214,12 +214,13 @@ class Newsman_Client
 
 			if (is_array($_error) && array_key_exists("err", $_error) && array_key_exists("message", $_error) && array_key_exists("code", $_error))
 			{
-				throw new Newsman_Client_Exception($_error["message"], $_error["code"]);
+				throw new Newsman_Client_Exception(
+					$_error["message"], $_error["code"]
+				);
 			} else
 			{
 				throw new Newsman_Client_Exception(
-					sprintf((string)curl_error($cu), (string)$http_status),
-					$http_status
+					(string)curl_error($cu), (string)$http_status
 				);
 			}
 		}
