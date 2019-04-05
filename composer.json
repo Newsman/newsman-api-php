@@ -1,0 +1,10 @@
+{
+    "name": "newsman/api",
+    "type": "library",
+    "description": "Newsman allows you to connect subscriber lists through the exposed API",
+    "keywords": ["email marketing","newsman"],
+    "license": "MIT", 
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
