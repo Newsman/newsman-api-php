@@ -1,10 +1,11 @@
 {
     "name": "newsman/api",
     "type": "library",
-    "description": "Newsman allows you to connect subscriber lists through the exposed API",
+    "description": "Newsman.app PHP API 1.2 wrapper. Easy manage your newsman.app subscribers, newsletters and segments.",
     "keywords": ["email marketing","newsman"],
     "license": "MIT", 
     "require": {
+        "ext-curl": "*",
         "php": ">=5.3.0"
     }
 }
