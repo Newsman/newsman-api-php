@@ -5,8 +5,8 @@
     "keywords": ["email marketing","newsman"],
     "license": "MIT", 
     "require": {
-	"php": >=5.3,
-	"ext-curl": *,
-	"ext-json": *
+	"php": ">=5.3",
+	"ext-curl": "*",
+	"ext-json": "*"
     }
 }
