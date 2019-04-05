@@ -39,3 +39,25 @@ Please make sure all strings are `UTF-8` encoded.
 # Example 
 
 More detailed [examples](https://github.com/Newsman/newsman-api-php/tree/master/example "Newsman PHP API Client examples") can be found [here](https://github.com/Newsman/newsman-api-php/tree/master/example).
+
+
+### Composer Install
+
+Put a file named composer.json at the root of your project, containing your project dependencies:
+
+{
+    "require": {
+        "newsman/api": "dev-master"
+    }
+}
+
+Install Composer In Your Project
+Run this in your command line:
+
+curl -sS https://getcomposer.org/installer | php
+Or download composer.phar into your project root.
+
+
+Execute this in your project root.
+
+php composer.phar install
