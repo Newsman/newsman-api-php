@@ -43,21 +43,21 @@ More detailed [examples](https://github.com/Newsman/newsman-api-php/tree/master/
 
 ### Composer Install
 
-Put a file named composer.json at the root of your project, containing your project dependencies:
+Put a file named `composer.json` at the root of your project, containing your project dependencies:
 
+```
 {
     "require": {
         "newsman/api": "dev-master"
     }
 }
+```
 
 Install Composer In Your Project
 Run this in your command line:
 
-curl -sS https://getcomposer.org/installer | php
-Or download composer.phar into your project root.
-
+`curl -sS https://getcomposer.org/installer | php`
 
 Execute this in your project root.
 
-php composer.phar install
+`php composer.phar install`
