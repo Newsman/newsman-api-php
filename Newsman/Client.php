@@ -145,51 +145,26 @@ class Newsman_Client
 		}
 
 		$this->method_name = $name;
-
+		
 		$v_params = array();
 		for ($i = 0; $i < count($params); $i++)
 		{
 			$k = "__" . $i . "__";
 			$v_params[$k] = $params[$i];
 		}
-
+		
 		$ret = $this->sendRequestRest($this->method_namespace . "." . $name, $v_params);
 
 		// reset
 		$this->method_namespace = null;
 		return $ret;
 	}
-
-	public function encodeParams($params)
-	{
-		$ret = array();
-
-		while (list($k, $v) = @each($params))
-		{
-			$k = $k . ""; // make it string
-			if (is_numeric($v) || is_string($v))
-			{
-				$ret[$k] = $v . "";
-			} // always string
-			elseif ($v instanceof DateTime)
-			{
-				$ret[$k] = $v->format(DateTime::ISO8601);
-			} else
-			{
-				$ret[$k] = json_encode($v);
-			}
-		}
-
-		return $ret;
-	}
-
+	
 	public function sendRequestRest($api_method, $params)
 	{
 		$api_method_url = sprintf("%s/%s/rest/%s/%s/%s.%s", $this->api_url, $this->api_version, $this->user_id, $this->api_key, $api_method, $this->output_format);
-
-		$api_params = $this->encodeParams($params);
-
-		$ret = $this->_post_curl($api_method_url, $api_params);
+		
+		$ret = $this->_post_curl($api_method_url, $params);
 
 		$ret = json_decode($ret, true);
 
@@ -203,10 +178,15 @@ class Newsman_Client
 		curl_setopt($cu, CURLOPT_POST, true);
 		curl_setopt($cu, CURLOPT_PORT, 443);
 
-		curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
+		//curl_setopt($cu, CURLOPT_POSTFIELDS, $params);
+		curl_setopt($cu, CURLOPT_CUSTOMREQUEST, "POST");  	
+		curl_setopt($cu, CURLOPT_POST, true);
+		curl_setopt($cu, CURLOPT_POSTFIELDS, json_encode($params));
+		curl_setopt($cu, CURLOPT_HTTPHEADER, array('application/json')); 		
 		curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
-
-		$ret = curl_exec($cu);
+		
+		$ret = curl_exec($cu);				
+		
 		$http_status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
 		if ($http_status != 200)
 		{
