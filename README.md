@@ -48,7 +48,7 @@ Put a file named `composer.json` at the root of your project, containing your pr
 ```
 {
     "require": {
-        "newsman/api": "dev-master"
+        "newsman/api": "1.0"
     }
 }
 ```
