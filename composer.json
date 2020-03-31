@@ -1,4 +1,4 @@
-{
+{ 
     "name": "newsman/api",
     "type": "library",
     "description": "Newsman.app PHP API 1.2 wrapper. Easy manage your newsman.app subscribers, newsletters and segments.",
