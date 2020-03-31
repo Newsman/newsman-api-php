@@ -9,5 +9,5 @@
 	"ext-curl": "*",
 	"ext-json": "*"
     },
-    "autoload": { "classmap": [ "src" ] }
+    "autoload": { "classmap": [ "Newsman/" ] }
 }
