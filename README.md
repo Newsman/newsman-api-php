@@ -5,7 +5,7 @@ This is the Newsman App PHP API client for API version 1.2.
 ## Newsman - Smart Email Service Provider
 
 [Newsman](https://www.newsman.com "Smart Email Service Provider") is a Smart Email Service Provider. 
-We send newsletters on behalf of our customers.
+We send newsletters and automate ecommerce on behalf of our customers.
 
 ## About Newsman API - version 1.2
 
