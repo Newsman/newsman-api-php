@@ -52,7 +52,7 @@ class Newsman_Client
 	public function __construct($user_id, $api_key)
 	{
 		$this->user_id = $user_id;
-		$this->api_key = $api_key;
+		$this->api_key = trim($api_key);
 
 		$this->_initCurl();
 	}
